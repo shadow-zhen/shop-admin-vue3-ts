@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Foo from './Foo'
 
 defineProps<{ msg: string }>()
+const emit = defineEmits(['change', 'update'])
+
+const handleClick = () => {
+  emit('change', 'vue3')
+}
 
 const count = ref(0)
 </script>
 
 <template>
+  <Foo />
   <h1>{{ msg }}</h1>
 
   <p>
@@ -43,6 +50,12 @@ const count = ref(0)
     @click="count++"
   >
     count is: {{ count }}
+  </button>
+  <button
+    type="button"
+    @click="handleClick"
+  >
+    Click
   </button>
   <p>
     Edit
